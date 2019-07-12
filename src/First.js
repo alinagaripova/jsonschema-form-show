@@ -1,9 +1,8 @@
-import * as serviceWorker from './serviceWorker';
 import React, { Component } from "react";
 import { render } from "react-dom";
 import Form from "react-jsonschema-form";
-import Second from './Second.js'
-// import './App.css';
+import App from "./Second";
+
 
 const schema = {
     "title": "A registration form",
@@ -73,32 +72,37 @@ const uiSchema = {
     }
 };
 
-const formData = {
-    "firstName": "Chuck",
-    "lastName": "Norris",
-    "age": 105,
-    "bio": "Roundhouse kicking asses since 1940",
-    "password": "noneed"
-};
+// const formData = {
+//     "firstName": "Chuck",
+//     "lastName": "Norris",
+//     "age": 75,
+//     "bio": "Roundhouse kicking asses since 1940",
+//     "password": "noneed"
+// };
 
 const onSubmit = ({formData}, e) => console.log("Data submitted: ",  formData.bio);
 const log = (type) => console.log.bind(console, type);
 
-render((
-    <div className="container">
-        <div className="row">
+class First extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            "firstName": "Chuck",
+            "lastName": "Norris",
+            "age": 75,
+            "bio": "Roundhouse kicking asses since 1940",
+            "password": "noneed"
+        }
+
+    }
+    render() {
+        console.log(this.props.title)
+        return(
             <Form className="col"
-              schema={schema}
-              uiSchema={uiSchema}
-              formData={formData}
-              onChange={log("changed")}
-              onSubmit={onSubmit}
-              onError={log("errors")} />
-            <Second className="col" data={formData} schema={schema} uiSchema={uiSchema}/>
-        </div>
-    </div>
-), document.getElementById("root"));
+                  schema={schema}/>
+        );
+    }
 
+}
 
-// ReactDOM.render(<App />, document.getElementById('root'));
-serviceWorker.unregister();
+export default First
