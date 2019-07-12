@@ -1,4 +1,5 @@
 import * as serviceWorker from './serviceWorker';
+
 import React, { Component } from "react";
 import { render } from "react-dom";
 import Form from "react-jsonschema-form";
@@ -71,56 +72,39 @@ const uiSchema = {
     }
 };
 
-let uiSchema2 = {
+function MyWidget(props) {
+    const {options, value} = props;
+    console.log(props)
+    const {color, backgroundColor} = options;
+    return (<p style={{color, backgroundColor}} className="alert alert-secondary">{value}</p>);
+}
+MyWidget.defaultProps = {
+    options: {
+        color: "grey",
+        backgroundColor:"lightGrey"
+    }
+};
+const uiSchema2 = {
     "firstName": {
-        "ui:widget": (props) => {
-            return (
-                <p className="alert alert-secondary">{props.value}</p>
-            );
-        },
+        "ui:widget": MyWidget
     },
     "lastName": {
-        "ui:widget": (props) => {
-            console.log(props);
-            return (
-                <p className="alert alert-secondary">{props.value}</p>
-            );
-        }
+        "ui:widget": MyWidget
     },
     "age": {
-        "ui:widget": (props) => {
-            return (
-                <p className="alert alert-secondary">{props.value}</p>
-            );
-        }
+        "ui:widget": MyWidget
     },
     "bio": {
-        "ui:widget": (props) => {
-            return (
-                <p className="alert alert-secondary">{props.value}</p>
-            );
-        }
+        "ui:widget": MyWidget
     },
     "password": {
-        "ui:widget": (props) => {
-            return (
-                <p>{props.value}</p>
-            );
-        }
+        "ui:widget": MyWidget
     },
     "date": {
-        "ui:widget": (props) => {
-            return (
-                <p className="alert alert-secondary">{props.value}</p>
-            );
-        }
+        "ui:widget": MyWidget
     },
     "telephone": {
-        "ui:widget": (props) => {
-            return (
-                <p className="alert alert-secondary">{props.value}</p>
-            );
-        }
+        "ui:widget": MyWidget
     }
 };
 
