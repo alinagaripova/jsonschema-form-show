@@ -2,8 +2,6 @@ import * as serviceWorker from './serviceWorker';
 import React, { Component } from "react";
 import { render } from "react-dom";
 import Form from "react-jsonschema-form";
-import Second from './Second.js'
-// import './App.css';
 
 const schema = {
     "title": "A registration form",
@@ -73,6 +71,59 @@ const uiSchema = {
     }
 };
 
+let uiSchema2 = {
+    "firstName": {
+        "ui:widget": (props) => {
+            return (
+                <p className="alert alert-secondary">{props.value}</p>
+            );
+        },
+    },
+    "lastName": {
+        "ui:widget": (props) => {
+            console.log(props);
+            return (
+                <p className="alert alert-secondary">{props.value}</p>
+            );
+        }
+    },
+    "age": {
+        "ui:widget": (props) => {
+            return (
+                <p className="alert alert-secondary">{props.value}</p>
+            );
+        }
+    },
+    "bio": {
+        "ui:widget": (props) => {
+            return (
+                <p className="alert alert-secondary">{props.value}</p>
+            );
+        }
+    },
+    "password": {
+        "ui:widget": (props) => {
+            return (
+                <p>{props.value}</p>
+            );
+        }
+    },
+    "date": {
+        "ui:widget": (props) => {
+            return (
+                <p className="alert alert-secondary">{props.value}</p>
+            );
+        }
+    },
+    "telephone": {
+        "ui:widget": (props) => {
+            return (
+                <p className="alert alert-secondary">{props.value}</p>
+            );
+        }
+    }
+};
+
 const data = {
     "firstName": "Chuck",
     "lastName": "Norris",
@@ -85,10 +136,10 @@ const log = (type) => console.log.bind(console, type);
 
 class First extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {formData:data};
     }
-    onChange = ({formData}, e) => {
+    onChange = ({formData}) => {
         this.setState({formData});
         console.log("Data submitted: ",  formData);
     };
@@ -103,12 +154,10 @@ class First extends Component {
                           formData={formData}
                           onChange={this.onChange}
                           onError={log("errors")} />
-                    );
                     <Form className="col"
-                          schema={schema} uiSchema={uiSchema} formData={formData}/>
+                          schema={schema} uiSchema={uiSchema2} formData={formData}/>
                 </div>
             </div>)
-
     }
 }
 
