@@ -73,7 +73,7 @@ const uiSchema = {
     }
 };
 
-const formData = {
+const data = {
     "firstName": "Chuck",
     "lastName": "Norris",
     "age": 105,
@@ -81,24 +81,37 @@ const formData = {
     "password": "noneed"
 };
 
-const onSubmit = ({formData}, e) => console.log("Data submitted: ",  formData.bio);
 const log = (type) => console.log.bind(console, type);
 
-render((
-    <div className="container">
-        <div className="row">
-            <Form className="col"
-              schema={schema}
-              uiSchema={uiSchema}
-              formData={formData}
-              onChange={log("changed")}
-              onSubmit={onSubmit}
-              onError={log("errors")} />
-            <Second className="col" data={formData} schema={schema} uiSchema={uiSchema}/>
-        </div>
-    </div>
-), document.getElementById("root"));
+class First extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {formData:data};
+    }
+    onChange = ({formData}, e) => {
+        this.setState({formData});
+        console.log("Data submitted: ",  formData);
+    };
+    render() {
+        const{formData} = this.state;
+        return(
+            <div className="container">
+                <div className="row">
+                    <Form className="col"
+                          schema={schema}
+                          uiSchema={uiSchema}
+                          formData={formData}
+                          onChange={this.onChange}
+                          onError={log("errors")} />
+                    );
+                    <Form className="col"
+                          schema={schema} uiSchema={uiSchema} formData={formData}/>
+                </div>
+            </div>)
 
+    }
+}
 
-// ReactDOM.render(<App />, document.getElementById('root'));
+render(<First/>, document.getElementById("root"));
+
 serviceWorker.unregister();

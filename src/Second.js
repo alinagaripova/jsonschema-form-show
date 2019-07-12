@@ -5,11 +5,10 @@ import './App.css';
 class Second extends Component {
     constructor(props){
         super(props)
-
     }
     render() {
-        console.log(this.props.data)
-        const {data, schema, uiSchema} = this.props
+        console.log(this.props.data);
+        const {data, schema, uiSchema} = this.props;
         return(
             <Form className="col"
                    schema={schema} uiSchema={uiSchema} formData={data}/>
