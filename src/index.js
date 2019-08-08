@@ -73,14 +73,14 @@ const uiSchema = {
 };
 
 function MyWidget(props) {
-    const {options, value} = props;
     console.log(props)
+    const {options, value} = props;
     const {color, backgroundColor} = options;
     return (<p style={{color, backgroundColor}} className="alert alert-secondary">{value}</p>);
 }
 MyWidget.defaultProps = {
     options: {
-        color: "grey",
+        color: "#17a2b8",
         backgroundColor:"lightGrey"
     }
 };
@@ -128,7 +128,7 @@ class First extends Component {
         console.log("Data submitted: ",  formData);
     };
     render() {
-        const{formData} = this.state;
+        const {formData} = this.state;
         return(
             <div className="container">
                 <div className="row">
